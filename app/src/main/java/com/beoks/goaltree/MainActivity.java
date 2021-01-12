@@ -34,12 +34,14 @@ public class MainActivity extends AppCompatActivity {
     SharedPreferences sharedPreferences=null;
     ArrayList<Graph> graphs=null;
     Gson gson=null;
+    MainActivity mainActivity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         bottomAppBar=(BottomAppBar)findViewById(R.id.bar);
         floatingActionButton=(FloatingActionButton)findViewById(R.id.fab);
+        mainActivity=this;
 
         sharedPreferences=getPreferences(MODE_PRIVATE);
         gson=new Gson();
@@ -55,7 +57,8 @@ public class MainActivity extends AppCompatActivity {
         bottomAppBar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                CustomBottomAppDialog customBottomAppDialog=new CustomBottomAppDialog(mainActivity);
+                customBottomAppDialog.show();
             }
         });
 
